@@ -1,3 +1,4 @@
+apply plugin: 'java'
 plugins {
     id 'java'
     id 'application'
@@ -9,8 +10,12 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+//This line tells Gradle where to look
+//(if necessary) for dependencies
+//artifact (a fancy word for a Jar file)
 
 dependencies {
+    testCompile 'junit:junit:4.12'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation group: 'com.googlecode.lanterna', name:
