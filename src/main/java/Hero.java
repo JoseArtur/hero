@@ -43,6 +43,7 @@ return position.getX();
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(),position.getY()),"X");
+
     }}
 
 
