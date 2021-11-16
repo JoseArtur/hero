@@ -9,9 +9,9 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 public class Game {
 
-    public static Screen screen; //now it's part of the class field.
+    private static Screen screen; //now it's part of the class field.
     boolean Verify = true;
-    Arena arena;
+    Arena arena = new Arena(20,20);
     public Game() {
 
         try {
@@ -29,7 +29,7 @@ public class Game {
         }
 
     }
-        private void draw () throws IOException {
+        public void draw () throws IOException {
         //private so posso chamar dentro da classe
             screen.clear();
             arena.draw(screen.newTextGraphics());
@@ -39,13 +39,13 @@ public class Game {
 
 
 
-
         public void run () throws IOException {
         while (Verify){
             draw();
             KeyStroke keyy = screen.readInput();
             processKey(keyy);
-            if(keyy.getKeyType() == KeyType.EOF) Verify=false;
+            if(keyy.getKeyType() == KeyType.Character && keyy.getCharacter() =='q') screen.close();
+            if(keyy.getKeyType() == KeyType.EOF) {Verify=false;break;}
         }screen.close();
 
         }

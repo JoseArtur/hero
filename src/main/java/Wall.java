@@ -18,10 +18,14 @@ public class Wall {
     public int getY() {
         return position.getY();
     }
+    public Position getPosition(){
+     return position;
+    }
 
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF55"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(),position.getY()),"W");
     }
+
 }

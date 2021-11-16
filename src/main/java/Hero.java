@@ -10,23 +10,6 @@ public class Hero {
 
     }
 
-    public int getY() {
-        return position.getY();
-    }
-
-    public void setY(int y) {
-        position.setY(y);
-
-    }
-
-    public int getX() {
-return position.getX();
-    }
-
-    public void setX(int x) {
-        position.setX(x);
-
-    }
     public Position moveUp(){return new Position(position.getX(),position.getY()-1);}
     public Position moveDown(){return new Position(position.getX(),position.getY()+1);}
     public Position moveRight(){return new Position(position.getX()+1,position.getY());}
@@ -39,6 +22,7 @@ return position.getX();
         this.position.setY(position.getY()) ;
 
     }
+
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.enableModifiers(SGR.BOLD);
