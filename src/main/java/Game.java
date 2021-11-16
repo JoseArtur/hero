@@ -38,13 +38,13 @@ public class Game {
 
         private void processKey(KeyStroke key) throws IOException {
             switch (key.getKeyType()) {
-                case ArrowUp :hero.moveUp();
+                case ArrowUp :moveHero(hero.moveUp());
                 break;
-                case ArrowDown :hero.moveDown();
+                case ArrowDown :moveHero(hero.moveDown());
                 break;
-                case ArrowLeft :hero.moveLeft();
+                case ArrowLeft :moveHero(hero.moveLeft());
                 break;
-                case ArrowRight :hero.moveRight();
+                case ArrowRight :moveHero(hero.moveRight());
                 break;
             }
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
@@ -52,6 +52,10 @@ public class Game {
                  screen.close();
             }
         }
+    private void moveHero(Position position){
+        hero.setPosition(position);
+    }
+
         public void run () throws IOException {
         while (Verify){
             draw();
