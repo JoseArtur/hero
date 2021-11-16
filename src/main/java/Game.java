@@ -9,9 +9,9 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 public class Game {
 
-    private static Screen screen; //now it's part of the class field.
+    public static Screen screen; //now it's part of the class field.
     boolean Verify = true;
-    Hero hero = new Hero(10,10);
+    Arena arena;
     public Game() {
 
         try {
@@ -32,29 +32,13 @@ public class Game {
         private void draw () throws IOException {
         //private so posso chamar dentro da classe
             screen.clear();
-            hero.draw(screen);
+            arena.draw(screen.newTextGraphics());
             screen.refresh();
         }
+        private void processKey(KeyStroke key) throws IOException {arena.processKey(key);}
 
-        private void processKey(KeyStroke key) throws IOException {
-            switch (key.getKeyType()) {
-                case ArrowUp :moveHero(hero.moveUp());
-                break;
-                case ArrowDown :moveHero(hero.moveDown());
-                break;
-                case ArrowLeft :moveHero(hero.moveLeft());
-                break;
-                case ArrowRight :moveHero(hero.moveRight());
-                break;
-            }
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
-                 Verify = false;
-                 screen.close();
-            }
-        }
-    private void moveHero(Position position){
-        hero.setPosition(position);
-    }
+
+
 
         public void run () throws IOException {
         while (Verify){
