@@ -2,6 +2,7 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 import java.io.IOException;
 public class Application {
+
     public static void main(String[] args) throws IOException {
     Game obj = new Game();
     obj.run();

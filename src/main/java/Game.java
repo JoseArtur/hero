@@ -11,9 +11,7 @@ public class Game {
 
     private static Screen screen; //now it's part of the class field.
     boolean Verify = true;
-
-    private int j = 10;
-    private int y = 10;
+    Hero hero = new Hero(10,10);
     public Game() {
 
         try {
@@ -34,17 +32,20 @@ public class Game {
         private void draw () throws IOException {
         //private so posso chamar dentro da classe
             screen.clear();
-            screen.setCharacter(j, y, TextCharacter.fromCharacter('X')
-                    [0]);
+            hero.draw(screen);
             screen.refresh();
         }
 
         private void processKey(KeyStroke key) throws IOException {
             switch (key.getKeyType()) {
-                case ArrowUp :y=y-1;
-                case ArrowDown :y++;
-                case ArrowLeft :j=y-1;
-                case ArrowRight :j++;
+                case ArrowUp :hero.moveUp();
+                break;
+                case ArrowDown :hero.moveDown();
+                break;
+                case ArrowLeft :hero.moveLeft();
+                break;
+                case ArrowRight :hero.moveRight();
+                break;
             }
             if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
                  Verify = false;
@@ -56,6 +57,7 @@ public class Game {
             draw();
             KeyStroke keyy = screen.readInput();
             processKey(keyy);
+            if(keyy.getKeyType() == KeyType.EOF) Verify=false;
         }screen.close();
 
         }
