@@ -6,12 +6,15 @@ import com.googlecode.lanterna.screen.Screen;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private int width;
     private int height;
     private Hero hero ;
     private List<Wall> walls;
+    private List<Coin> coins;
+    private List<Monster> monsters;
 
 
 
@@ -20,6 +23,8 @@ public class Arena {
     this.height = height;
     hero = new Hero(10,10);
     this.walls = createWalls();
+    this.coins = createCoins();
+
     }
     private List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
@@ -33,7 +38,17 @@ public class Arena {
         }
         return walls;
     }
-        private boolean canHeroMove(Position position){
+    private List<Coin> createCoins() {
+        Random random = new Random();
+        ArrayList<Coin> coins = new ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            coins.add(new Coin(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
+        return coins;
+    }
+
+    private void retrieveCoins(){
+    }
+    private boolean canHeroMove(Position position){
         if(position.getX() +1>=width || position.getX()<=0 || position.getY() +1 >=height ||position.getY()<=0){
             return false;
         }
@@ -60,8 +75,11 @@ public class Arena {
                 break;
 }}
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#f80f00"));
         graphics.fillRectangle(new TerminalPosition(0,0),new TerminalSize(width, height),' ');
         hero.draw(graphics);
+        for(Coin coin:coins) coin.draw(graphics);
+
         for(Wall wall:walls) wall.draw(graphics);
+
     }}

@@ -11,7 +11,7 @@ public class Game {
 
     private static Screen screen; //now it's part of the class field.
     boolean Verify = true;
-    Arena arena = new Arena(20,20);
+    Arena arena = new Arena(40,20);
     public Game() {
 
         try {
@@ -45,8 +45,9 @@ public class Game {
             KeyStroke keyy = screen.readInput();
             processKey(keyy);
             if(keyy.getKeyType() == KeyType.Character && keyy.getCharacter() =='q') screen.close();
-            if(keyy.getKeyType() == KeyType.EOF) {Verify=false;break;}
-        }screen.close();
+            if(keyy.getKeyType() == KeyType.EOF) {break;}
+            processKey(keyy);
+        }
 
         }
     }

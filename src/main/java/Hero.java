@@ -2,11 +2,10 @@ import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
+public class Hero extends Element{
 
-    private Position position;
     public Hero(int x,int y){
-        position = new Position(x,y);
+        super(x,y);
 
     }
 
@@ -16,12 +15,6 @@ public class Hero {
     public Position moveLeft(){return new Position(position.getX()-1,position.getY());}
 
 
-
-    public void setPosition(Position position){
-        this.position.setX(position.getX()) ;
-        this.position.setY(position.getY()) ;
-
-    }
 
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
