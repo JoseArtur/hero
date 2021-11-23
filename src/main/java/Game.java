@@ -30,7 +30,7 @@ public class Game {
 
     }
         public void draw () throws IOException {
-        //private so posso chamar dentro da classe
+        //era private so posso chamar dentro da classe
             screen.clear();
             arena.draw(screen.newTextGraphics());
             screen.refresh();
@@ -43,7 +43,6 @@ public class Game {
         while (Verify){
             draw();
             KeyStroke keyy = screen.readInput();
-            processKey(keyy);
             if(keyy.getKeyType() == KeyType.Character && keyy.getCharacter() =='q') screen.close();
             if(keyy.getKeyType() == KeyType.EOF) {break;}
             processKey(keyy);
